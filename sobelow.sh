@@ -18,11 +18,11 @@ else
         echo $file
         echo "##########################"
         ~/.mix/escripts/sobelow $1 --format sarif >$file
+        cd ../../
         echo "inspecting output file:"
         echo "##########################"
-        echo cat $file
+        cat $file
         echo "##########################"
-        cd ../../
         i=$((i + 1))
     done
 fi
