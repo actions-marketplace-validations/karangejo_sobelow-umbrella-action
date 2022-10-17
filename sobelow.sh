@@ -1,10 +1,20 @@
 #!/bin/sh -l
+mix local.hex --force
+mix escript.install hex sobelow --force
 
-mix deps.get
-MIX_ENV=test mix deps.compile --force
-
+i=1
 if [ "$2" = "false" ]; then
-    mix sobelow $1
+	for d in apps/*/; do
+		cd $d
+		~/.mix/escripts/sobelow $1
+		cd ../../
+	done
 else
-    mix sobelow $1 --format sarif >>results.sarif
+	for d in apps/*/; do
+		cd $d
+		~/.mix/escripts/sobelow $1 --format sarif >>../../results${i}.sarif
+		cd ../../
+		i=$((i + 1))
+	done
 fi
+python -m sarif copy -o results.sarif ./
