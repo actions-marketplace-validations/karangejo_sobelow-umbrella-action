@@ -1,6 +1,7 @@
 #!/bin/sh -l
 mix local.hex --force
 mix escript.install hex sobelow --force
+~/.mix/escripts/sobelow --quiet
 
 i=1
 if [ "$2" = "false" ]; then
