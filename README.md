@@ -27,8 +27,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: run-action
-        uses: karangejo/sobelow-umbrella-action@v1.3
-      - uses: github/codeql-action/upload-sarif@v1
+        uses: karangejo/sobelow-umbrella-action@v1.4
+      - uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: results.sarif
 ```
@@ -52,10 +52,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: run-action
-        uses: karangejo/sobelow-umbrella-action@v1.3
+        uses: karangejo/sobelow-umbrella-action@v1.4
         with:
           flags: '-i Config'
-      - uses: github/codeql-action/upload-sarif@v1
+      - uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: results.sarif
 ```
