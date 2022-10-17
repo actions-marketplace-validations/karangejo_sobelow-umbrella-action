@@ -12,7 +12,16 @@ if [ "$2" = "false" ]; then
 else
     for d in apps/*/; do
         cd $d
-        ~/.mix/escripts/sobelow $1 --format sarif >../../results${i}.sarif
+        file=../../results${i}.sarif
+        echo "writing output to:"
+        echo "##########################"
+        echo $file
+        echo "##########################"
+        ~/.mix/escripts/sobelow $1 --format sarif >$file
+        echo "inspecting output file:"
+        echo "##########################"
+        echo cat $file
+        echo "##########################"
         cd ../../
         i=$((i + 1))
     done
