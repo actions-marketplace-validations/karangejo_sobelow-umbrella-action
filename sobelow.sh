@@ -27,4 +27,5 @@ else
         i=$((i + 1))
     done
 fi
-python3 -m sarif copy -o results.sarif ./
+
+elixir merge_sarif.exs
