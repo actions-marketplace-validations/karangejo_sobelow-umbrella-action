@@ -1,5 +1,5 @@
-name: Sobelow
-author: Griffin Byatt
+name: SobelowUmbrella
+author: Gabriel Gras
 description: Security-focused static analysis for the Phoenix Framework
 
 inputs:
