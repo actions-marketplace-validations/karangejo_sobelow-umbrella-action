@@ -17,4 +17,4 @@ else
 		i=$((i + 1))
 	done
 fi
-python -m sarif copy -o results.sarif ./
+python3 -m sarif copy -o results.sarif ./
