@@ -21,7 +21,7 @@ else
         cd ../../
         echo "inspecting output file:"
         echo "##########################"
-        cat $file
+        cat results${i}.sarif
         echo "##########################"
         i=$((i + 1))
     done
