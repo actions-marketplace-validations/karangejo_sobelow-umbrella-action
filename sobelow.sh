@@ -3,6 +3,9 @@ mix local.hex --force
 mix escript.install hex sobelow --force
 ~/.mix/escripts/sobelow --quiet
 
+pwd
+ls
+
 i=1
 if [ "$2" = "false" ]; then
     for d in apps/*/; do
@@ -28,4 +31,4 @@ else
     done
 fi
 
-elixir merge_sarif.exs
+elixir /merge_sarif.exs
