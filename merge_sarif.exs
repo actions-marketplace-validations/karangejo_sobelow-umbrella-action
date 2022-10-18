@@ -12,13 +12,15 @@ merged_sarif =
 
     Map.merge(acc, json_map, fn
       "runs", [val_acc], [val_json] ->
-        Map.merge(val_acc, val_json, fn
-          "results", val_before, val_after ->
-            val_before ++ val_after
+        [
+          Map.merge(val_acc, val_json, fn
+            "results", val_before, val_after ->
+              val_before ++ val_after
 
-          _, _, val ->
-            val
-        end)
+            _, _, val ->
+              val
+          end)
+        ]
 
       _, _, val_json ->
         val_json
