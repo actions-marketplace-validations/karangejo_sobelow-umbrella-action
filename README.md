@@ -14,6 +14,10 @@ defp alises do
 end
 
 ```
+Now you can run this command from the terminal and get a code scan:
+```bash
+mix sobelow
+```
 
 The most basic workflow looks like this:
 
@@ -27,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: run-action
-        uses: karangejo/sobelow-umbrella-action@v1.4
+        uses: karangejo/sobelow-umbrella-action@v1.12
       - uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: results.sarif
@@ -52,7 +56,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: run-action
-        uses: karangejo/sobelow-umbrella-action@v1.4
+        uses: karangejo/sobelow-umbrella-action@v1.12
         with:
           flags: '-i Config'
       - uses: github/codeql-action/upload-sarif@v2

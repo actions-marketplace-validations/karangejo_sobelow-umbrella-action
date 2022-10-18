@@ -1,34 +1,30 @@
 #!/bin/sh -l
+# install hex and sobelow
 mix local.hex --force
 mix escript.install hex sobelow --force
-~/.mix/escripts/sobelow --quiet
 
-pwd
-ls
+# sometimes running the script for the first time raises
+# an ssl warning to stdout and since we are writing to
+# a sarif file we want to get rid of this warning first
+~/.mix/escripts/sobelow --quiet
 
 i=1
 if [ "$2" = "false" ]; then
     for d in apps/*/; do
+        # just run sobelow
         cd $d
         ~/.mix/escripts/sobelow $1
         cd ../../
     done
 else
     for d in apps/*/; do
+        # just run sobelow and merge the sarif files for
+        # upload to github security tab
         cd $d
         file=../../results${i}.sarif
-        echo "writing output to:"
-        echo "##########################"
-        echo $file
-        echo "##########################"
         ~/.mix/escripts/sobelow $1 --format sarif >$file
         cd ../../
-        echo "inspecting output file:"
-        echo "##########################"
-        cat results${i}.sarif
-        echo "##########################"
         i=$((i + 1))
+        elixir /merge_sarif.exs
     done
 fi
-
-elixir /merge_sarif.exs
